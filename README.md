@@ -44,4 +44,5 @@ Notebooks that analyze and compare infection pattern across simple, simplicial a
 
 Hypergraph generation:
 
-Find_cliques_aggregate_save_hyperedges.ipynb is a Jupyter notebook to generate hypergraphs strating from data like Sociopatterns, which come in a shape "i j t"
+Generate_aggregated_graphs.ipynb is a Jupyter notebook to generate graphs starting from data like Sociopatterns, which come in a shape "i j t"
+Generate_aggregated_hypergraphs.ipynb is a Jupyter notebook to generate hypergraphs starting from data like Sociopatterns, which come in a shape "i j t"

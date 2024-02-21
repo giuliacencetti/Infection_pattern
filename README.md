@@ -3,7 +3,7 @@ Code for the article ....
 
 Simple model:
 
-CODE BY DIEGO____________________________________________
+Simple_model_pack contains a simplified version of the code used in https://github.com/diegocontr/EpidemicSimulation to simulate simple contagion with R-calibrated betas.
 
 Simulate_simple_contagion_SIR_free_a.ipynb, which uses the functions in Simplagion_functions_SIR.py, simulates simple contagion and saves infection pattern in results.
 

@@ -1,5 +1,8 @@
-Code for the article ....
+Code for the article https://arxiv.org/pdf/2309.10486.pdf.
 
+We use Sociopatterns data, which are temporal, so first we need to aggregate them by using the notebook Generate_aggregated_graphs.ipynb, Generate_aggregated_hypergraphs.ipynb and Generate_aggregated_graphs_packformat.ipynb.
+Generate_aggregated_graphs.ipynb is a Jupyter notebook to generate graphs starting from data like Sociopatterns, which come in a shape "i j t"
+Generate_aggregated_hypergraphs.ipynb instead generates hypergraphs.
 
 Simple model:
 
@@ -41,8 +44,3 @@ Models comparison:
 
 Notebooks that analyze and compare infection pattern across simple, simplicial and threshold model
 
-
-Hypergraph generation:
-
-Generate_aggregated_graphs.ipynb is a Jupyter notebook to generate graphs starting from data like Sociopatterns, which come in a shape "i j t"
-Generate_aggregated_hypergraphs.ipynb is a Jupyter notebook to generate hypergraphs starting from data like Sociopatterns, which come in a shape "i j t"

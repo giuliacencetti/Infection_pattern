@@ -126,11 +126,7 @@ class Threeshold_strength_resp_model:
                     if neigh[0] in old_inf:
                         Istrength += neigh[1] # strength of i-neigh[0]
                         Ineighs.append(neigh[0])
-                        #print('neigh',i,Ineighs,Istrength)
-                        #print('cond',Istrength, threshold*strength,threshold,strength)
                 if Istrength > threshold*strength:
-#                    self.infected.append(i)
-#                    self.susceptible.remove(i)
                     self.Istate[i] = 1
                     flag_inf = True
                     t_i[i].append(t+1)
@@ -138,7 +134,6 @@ class Threeshold_strength_resp_model:
 
                     for j in Ineighs:
                         self.C[tuple((j,i))] = self.edgelist[tuple(np.sort((i,j)))]/Istrength
-                        #print('weight change',self.C[tuple(np.sort((i,j)))])
 
             if mu != 0:
                 for i in old_inf:
@@ -148,28 +143,26 @@ class Threeshold_strength_resp_model:
                         self.Rstate[i] = 1
 
 
-            # Motivi per interrompere:
-            # 1- Non ci sono più suscettibili
-            # 2- Non ci sono più infetti
-            # 3- Stallo, la soglia che ho scelto non mi permette di andare avanti
+            # Reasons to interrupt:
+            # 1- No more susceptibles
+            # 2- No more infected
+            # 3- Stucked
 
             # 1
             Sstate = 1 - self.Istate - self.Rstate
-            if Sstate.sum() == 0: # non ci sono più suscettibili
+            if Sstate.sum() == 0: # No more susceptibles
                 #print('No more susc')
                 break
             # 2
-            if self.Istate.sum() == 0: # non ci sono più infetti
+            if self.Istate.sum() == 0: # No more infected
                 #print('No more inf')
                 break
             # 3
             if list(np.where(Sstate==1)[0]) == old_susc:
-                #print('stacked at t %d'%t) # stallo
+                #print('stacked at t %d'%t) 
                 break
 
         if Sstate.sum() != 0 and list(np.where(Sstate==1)[0]) != old_susc:
-            print('not finished: ci sono ancora suscettibili')
-        #elif self.Istate.sum() != 0 and list(np.where(Sstate==1)[0]) != old_susc:
-        #    print('not finished: ci sono ancora infetti')
+            print('not finished: there are susceptibles left')
 
-        return self.C, flag_inf, t_i, self.nb_Ineighs
+        return self.C, flag_inf, t_i

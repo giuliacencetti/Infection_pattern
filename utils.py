@@ -26,40 +26,13 @@ def load_C_list(filename):
 def cos_sim(v1,v2):
     return np.sum(v1*v2) / (np.sqrt((np.sum(v1*v1))*np.sum(v2*v2)))
 
-'''
-def plot_sim(sim, xy_range, xy_label, title, figname, save):
+
+def plot_sim(sim, mu, xy_range, ax_label, save, figname):
     fig,ax = plt.subplots(1,1,figsize=(4.5,4))
-    maxValue = max([max(sim[n]) for n in range(len(sim))])
+
     minValue = min([min(sim[n][np.nonzero(sim[n])]) for n in range(len(sim)-1)])
-    print(minValue,maxValue)
-    plt.rcParams.update({'font.size': 13})
-    sns.heatmap(sim.transpose(),
-                xticklabels=xy_range,
-                yticklabels=xy_range,
-                annot=False,
-                mask=np.triu(np.ones_like(sim, dtype=bool)),
-                vmin=minValue,
-                vmax=maxValue,
-                cmap="viridis")
-    plt.xlabel(xy_label)
-    plt.ylabel(xy_label)
-    plt.title(title)
-    plt.tight_layout()
-    if save:
-        plt.savefig(figname)
-    plt.show()
-'''
+    maxValue = max([max(sim[n]) for n in range(len(sim))])
 
-def plot_sim(sim, mu, xy_range, ax_label, save, figname, scale, min_scale, max_scale):
-    fig,ax = plt.subplots(1,1,figsize=(4.5,4))
-
-    if scale == 'independent':
-        minValue = min([min(sim[n][np.nonzero(sim[n])]) for n in range(len(sim)-1)])
-        maxValue = max([max(sim[n]) for n in range(len(sim))])
-    elif scale == 'fixed':
-        minValue = min_scale
-        maxValue = max_scale
-    print(minValue,maxValue)
 
     plt.rcParams.update({'font.size': 13})
 

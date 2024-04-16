@@ -8,7 +8,7 @@ We use Sociopatterns data, which are temporal, so first we need to aggregate the
 - Generate_aggregated_graphs_packformat.ipynb
 
 
-**Simple model**:
+# Simple model:
 
 - Simple_model_pack contains a simplified version of the code used in https://github.com/diegocontr/EpidemicSimulation to simulate simple contagion with R-calibrated betas.
 
@@ -46,5 +46,5 @@ We use Sociopatterns data, which are temporal, so first we need to aggregate the
 
 **Models comparison**:
 
-Notebooks that analyze and compare infection pattern across simple, simplicial and threshold model
+Notebooks that analyze and compare infection pattern across simple, simplicial and threshold model.
 

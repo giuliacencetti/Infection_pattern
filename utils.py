@@ -69,8 +69,6 @@ def plot_sim_different_axes(sim, x_range, y_range, x_label, y_label, figname, sa
                 cmap="viridis")
     plt.xlabel(x_label)
     plt.ylabel(y_label)
-    #plt.title(title)
-    #ax.set_title(title)
     plt.tight_layout()
     if save:
         plt.savefig(figname)

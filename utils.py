@@ -48,8 +48,6 @@ def plot_sim(sim, mu, xy_range, ax_label, save, figname):
     plt.ylabel(ax_label)
     plt.tight_layout()
     if save:
-        if scale == 'fixed':
-            figname += '_colorscale'
         figname += '.pdf'
         print(figname)
         plt.savefig(figname)

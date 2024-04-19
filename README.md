@@ -5,13 +5,18 @@ The code language is Python 3, we make use of the following libraries: numpy, se
 We use Sociopatterns data, which are temporal, so first we need to aggregate them by using the notebooks:
 - *Generate_aggregated_graphs.ipynb*, which, starting from data like Sociopatterns coming in a shape "i j t", generates a static weighted graph.
 - *Generate_aggregated_hypergraphs.ipynb*, which, starting from the same data, generates a weighted hypergraph.
-- *Generate_aggregated_graphs_packformat.ipynb*
 
 We then simulate three contagion models (simple, simplicial and threshold) on the static weighted networks and hypergraphs. For each model we analyze the results and finally we compare the results obtained for the three different models.
 
 # Simple model:
+The code for simple contagion is in the folders "Simple_model" and "Simple_model_pack".
 
-- *Simple_model_pack* contains a simplified version of the code used in https://github.com/diegocontr/EpidemicSimulation to simulate simple contagion with R-calibrated betas.
+## Simple_model_pack:
+
+contains a simplified version of the code used in https://github.com/diegocontr/EpidemicSimulation to simulate simple contagion with R-calibrated betas.
+
+## Simple_model:
+Contains the following notebooks:
 
 - *Simulate_simple_contagion_SIR_free_a.ipynb*, which uses the functions in *Simplagion_functions_SIR.py*, simulates simple contagion and saves infection pattern in results. Notice that the code for simple model and simplicial model is the same, with the difference that for simple model we always set $\beta_{\Delta} = 0$.
 
@@ -25,6 +30,7 @@ We then simulate three contagion models (simple, simplicial and threshold) on th
 
 
 # Simplicial model:
+In the folder "Simplicial_model/code" there is the code for simplicial contagion, which uses the following notebooks:
 
 - *Simulate_simplicial_contagion_SIR_free_a.ipynb*, which uses the functions in *Simplagion_functions_SIR.py*, simulates simplicial contagion and saves infection pattern in results.
 
@@ -37,6 +43,7 @@ We then simulate three contagion models (simple, simplicial and threshold) on th
 - *Receiver_spreader_index_simplicial_vs_simplicial_free_a.ipynb* and *Receiver_spreader_index_simplicial_vs_simplicial_fixed_a.ipynb* compute receiver and spreader indices and make the plots.
 
 # Threshold model:
+In the folder "Threshold_model/code" there is the code for threshold contagion, which uses the following notebooks:
 
 - *Simulate Threshold_stochastic.ipynb*, which uses the functions in *Threshold_strength_responsibility_model_functions.py*, simulates threshold contagion and saves infection pattern in results.
 
@@ -67,7 +74,7 @@ For all the figures we have simulated the processes on the primary school datase
 
 - Fig. 3(a): ...Diego
 
-- Fig. 3(b): We first need to choose some values of $\beta$ (and hence of $R_0$) to simulate the simple contagion. For the figure in the paper the values of $\beta$ are [0.12,0.15,0.18,0.21,0.24,0.27,0.3,0.33,0.36], corresponding to the values of $R_0$ [1.40,1.65,1.97,2.11,2.31,2.48,2.68,2.84,3.01] (but different values can be found using *Simulate_simple_contagion_SIR_find_R0.ipynb*). These values can be put in *Simulate_simple_contagion_SIR_free_a.ipynb* as "beta_range" to simulate the process. The infection patterns will be stored in a folder "results".  The notebook *Receiver_spreader_index_simple_vs_simple.ipynb* takes these results and compare them to generate the figure.
+- Fig. 3(b): We first need to choose some values of $\beta$ (and hence of $R_0$) to simulate the simple contagion. For the figure in the paper the values of $\beta$ are [0.12,0.15,0.18,0.21,0.24,0.27,0.3,0.33,0.36], corresponding to the values of $R_0$ [1.40,1.65,1.97,2.11,2.31,2.48,2.68,2.84,3.01] (but different values can be found using *Simulate_simple_contagion_SIR_find_R0.ipynb*). These values can be put in *Simulate_simple_contagion_SIR_free_a.ipynb* in folder "Simple_model/code" as "beta_range" to simulate the process. The infection patterns will be stored in a folder "results".  The notebook *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* takes these results and compare them to generate the figure.
 
 - Fig.3(c-e): Similarly to the procedure for fig. 3(b), we need to simulate the process with *Simulate_simple_contagion_SIR_fixed_a_final.ipynb* and to make the plots with *plot_similarity_matrix_SIR_simple_fixed_a_final.ipynb*. In both the notebooks the desired range of attack rate should be indicated setting minimum (a_inf) and maximum (a_sup).
 

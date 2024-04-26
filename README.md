@@ -24,12 +24,12 @@ python 01_sistematic_simulation_altmodel.py --disease {MODEL} --tauE {tauE} --ta
 Here's what each parameter represents:
 
 - `MODEL`: Choose from SIR, SEIR, or COVID.
-- `tauE`: Either 1 or 4, corresponding to 1/mu_E for the SEIR model.
-- `tauI`: Either 1 or 4, corresponding to 1/mu_I for the SEIR and SIR models.
+- `tauE`: Either 1 or 4, corresponding to $1/\mu_E$ for the SEIR model.
+- `tauI`: Either 1 or 4, corresponding to $1/\mu_I$ for the SEIR and SIR models.
 - `MARKOVIAN`: 1 for a Markovian process, or 0.25 for the non-Markovian process used in the paper.
 - `R0`: Choose from 2, 2.5, 3, 3.5, or 4.0.
 - `DATASET`: Select from office, hospital, cprepa, conf, or school.
-- `NAME`: Use one of the following to ensure coherence with the parameters:
+- `NAME`: Use one of the following ( ensure coherence with the other parameters):
   - SIR: for the SIR model
   - COVID: for the COVID model
   - SEIRe1: for Markovian SEIR with tauI=1 and tauE=1

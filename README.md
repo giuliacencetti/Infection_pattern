@@ -9,17 +9,15 @@ We use Sociopatterns data, which are temporal, so first we need to aggregate the
 We then simulate three contagion models (simple, simplicial and threshold) on the static weighted networks and hypergraphs. For each model we analyze the results and finally we compare the results obtained for the three different models.
 
 # Simple model:
-The code for simple contagion is in the folders "Simple_model" and "Simple_model_pack".
+The code for simple contagion is in the folders `Simple_model` and `Simple_model_pack`.
 
 ## Simple_model_pack:
 
 contains a simplified version of the code used in https://github.com/diegocontr/EpidemicSimulation to simulate simple contagion with R-calibrated betas.
 
-To generate simulation data, execute the following scripts:
-
+First the folder `SimResults/{DATASET}` should be created, it is where the results will be saved. Then to generate simulation data, execute the following scripts:
 
 `python 01_sistematic_simulation_altmodel.py --disease {MODEL} --tauE {tauE} --tauI {tauI} --pvar {MARKOVIAN} --Nruns 1000 --R0fit {R0} --data {DATASET} --folder SimResults/{DATASET} --label {NAME}_ --modelname {NAME}`
-
 
 Here's what each parameter represents:
 
@@ -39,7 +37,7 @@ Here's what each parameter represents:
   - SEIRe4v025: for Non-Markovian SEIR with tauI=1 and tauE=4
   - SEIRi4v025: for Non-Markovian SEIR with tauI=4 and tauE=1
 
-For the school dataset, use the *01_sistematic_simulation_altmodel-school.py* script specifically for the COVID model. The results will be save in `SimResults/{DATASET}`, and will have custom format that includes several parameters of the model.
+For the school dataset, use the *01_sistematic_simulation_altmodel-school.py* script specifically for the COVID model. The results will be saved in `SimResults/{DATASET}`, and will have custom format that includes several parameters of the model.
 
 
 ## Simple_model:
@@ -57,7 +55,7 @@ Contains the following notebooks:
 
 
 # Simplicial model:
-In the folder "Simplicial_model/code" there is the code for simplicial contagion, which uses the following notebooks:
+In the folder `Simplicial_model/code` there is the code for simplicial contagion, which uses the following notebooks:
 
 - *Simulate_simplicial_contagion_SIR_free_a.ipynb*, which uses the functions in *Simplagion_functions_SIR.py*, simulates simplicial contagion and saves infection pattern in results.
 
@@ -65,12 +63,12 @@ In the folder "Simplicial_model/code" there is the code for simplicial contagion
 
 - *Simulate_simplicial_contagion_SIR_find_R0.ipynb*, which uses the functions in *Simplagion_functions_SIR_R0.py*, simulates the contagion and compute R0.
 
-- *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* and *plot_similarity_matrix_SIR_simplicial_fixed_a_final.ipynb* compute and plot the cosine similarity between infection patterns at different values of $\beta$ and $\beta_{Delta}$.
+- *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* and *plot_similarity_matrix_SIR_simplicial_fixed_a_final.ipynb* compute and plot the cosine similarity between infection patterns at different values of $\beta$ and $\beta_{\Delta}$.
 
 - *Receiver_spreader_index_simplicial_vs_simplicial_free_a.ipynb* and *Receiver_spreader_index_simplicial_vs_simplicial_fixed_a.ipynb* compute receiver and spreader indices and make the plots.
 
 # Threshold model:
-In the folder "Threshold_model/code" there is the code for threshold contagion, which uses the following notebooks:
+In the folder `Threshold_model/code` there is the code for threshold contagion, which uses the following notebooks:
 
 - *Simulate Threshold_stochastic.ipynb*, which uses the functions in *Threshold_strength_responsibility_model_functions.py*, simulates threshold contagion and saves infection pattern in results.
 
@@ -99,22 +97,27 @@ Notebooks that analyze and compare infection pattern across simple, simplicial a
 # How to reproduce the figures of the paper:
 For all the figures we have simulated the processes on the primary school dataset of Sociopatterns.
 
-- Fig. 3(a): To generate the infection pattern matrices necessary for creating the figures, execute the script *02_extract_matrices.py* for each simulation condition. To run this script on a specific output file, use the command `python 02_extract_matrices.py --Npop {N} --folder ./SimResults/{DATASET}/ --folder_out ./SimResults/{DATASET}/ --file {FILE_TO_ANALYZE} --label {NAME}`, where `N` represents the desired output matrix's size, saved in CSV format, denoting the number of nodes in the dataset.
-Then the notebook *Plot_similarity_fixed_R0.ipynb* in "Simple_contagion/code" compares the generated infection patterns and generates the figure.
+- Fig. 3(a): To generate the infection pattern matrices necessary for creating the figures, execute the script *02_extract_matrices.py* for each simulation condition. To run this script on a specific output file, use the command `python 02_extract_matrices.py --Npop {N} --folder ./SimResults/{DATASET}/ --folder_out ./SimResults/{DATASET}/ --file {FILE_TO_ANALYZE} --label {NAME}`, where `FILE_TO_ANALYZE` is the name of the file generated by *01_sistematic_simulation_altmodel.py* and `N` represents the number of nodes in the dataset and hence the desired output matrix's size, saved in CSV format.
+- workplace: `NAME` =  office `N` = 214
+- hospital: `NAME` = hospital `N` = 71
+- high school: `NAME` = cprepa  `N` = 324
+- conference: `NAME` = conf  `N` = 405
+- primary school: `NAME` = school  `N` = 232
+Then the notebook *Plot_similarity_fixed_R0.ipynb* in `Simple_contagion/code` compares the generated infection patterns and generates the figure.
 
-- Fig. 3(b): We first need to choose some values of $\beta$ (and hence of $R_0$) to simulate the simple contagion. For the figure in the paper the values of $\beta$ are [0.12,0.15,0.18,0.21,0.24,0.27,0.3,0.33,0.36], corresponding to the values of $R_0$ [1.40,1.65,1.97,2.11,2.31,2.48,2.68,2.84,3.01] (but different values can be found using *Simulate_simple_contagion_SIR_find_R0.ipynb*). These values can be put in *Simulate_simple_contagion_SIR_free_a.ipynb* in folder "Simple_model/code" as "beta_range" to simulate the process. The infection patterns will be stored in a folder "results".  The notebook *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* takes these results and compare them to generate the figure.
+- Fig. 3(b): We first need to choose some values of $\beta$ (and hence of $R_0$) to simulate the simple contagion. For the figure in the paper the values of $\beta$ are [0.12,0.15,0.18,0.21,0.24,0.27,0.3,0.33,0.36], corresponding to the values of $R_0$ [1.40,1.65,1.97,2.11,2.31,2.48,2.68,2.84,3.01] (but different values can be found using *Simulate_simple_contagion_SIR_find_R0.ipynb*). These values can be put in *Simulate_simple_contagion_SIR_free_a.ipynb* in folder `Simple_model/code` as "beta_range" to simulate the process. The infection patterns will be stored in a folder `results`.  The notebook *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* takes these results and compare them to generate the figure.
 
 - Fig.3(c-e): Similarly to the procedure for fig. 3(b), we need to simulate the process with *Simulate_simple_contagion_SIR_fixed_a_final.ipynb* and to make the plots with *plot_similarity_matrix_SIR_simple_fixed_a_final.ipynb*. In both the notebooks the desired range of attack rate should be indicated setting minimum (a_inf) and maximum (a_sup).
 
-- Fig.4: The simulations for the office dataset have been completed, and infection pattern matrices have been computed using *02_extract_matrices.py* for each model to be compared with the reference model (SIR with R0=4 in this case). Utilize the *script 03_data_figure4.py* to generate a JSON file containing all the information required to create the figure.
-Then the notebook *Fig_similarity_time.ipynb* in "Simple_model/code" will generate the figure.
+- Fig.4: Once the simulations for the chosen dataset have been completed, and infection pattern matrices have been computed using *02_extract_matrices.py* for each model to be compared with the reference model (SIR with R0=4 in this case). Utilize the script *03_data_figure4.py* to generate a JSON file containing all the information required to create the figure.
+Then the notebook *Fig_similarity_time.ipynb* in `Simple_model/code` will generate the figure.
 
-- Fig.5(a,b): The notebook *Simulate_simplicial_contagion_SIR_free_a.ipynb* in "Simplicial_model/code" simulates the simplicial contagion for the set of values of $\beta$ and $\beta_{\Delta}$ that appears in the figure (but can be changed setting beta_betaT_range). The infection pattern are stored in the folder "results" and then used by the notebook *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* to generate the figures.
+- Fig.5(a,b): The notebook *Simulate_simplicial_contagion_SIR_free_a.ipynb* in `Simplicial_model/code` simulates the simplicial contagion for the set of values of $\beta$ and $\beta_{\Delta}$ that appears in the figure (but can be changed setting beta_betaT_range). The infection pattern are stored in the folder `results` and then used by the notebook *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* to generate the figures.
 
 - Fig. 5(c,d): Similarly to figs. 5(a,b), we need to simulate the process with *Simulate_simple_contagion_SIR_fixed_a_final.ipynb* and to make the figures with *plot_similarity_matrix_SIR_simplicial_fixed_a_final.ipynb*.  In both the notebooks the desired range of attack rate should be indicated setting minimum (a_inf) and maximum (a_sup).
 
-- Fig. 5(e): The figure is generated by *plot_similarity_matrix_simplicial_vs_simple.ipynb* in "Models_comparison", which takes in input the infection patterns of simple and simplicial contagion generated with *Simulate_simple_contagion_SIR_free_a.ipynb* and *Simulate_simplicial_contagion_SIR_free_a.ipynb* respectively.
+- Fig. 5(e): The figure is generated by *plot_similarity_matrix_simplicial_vs_simple.ipynb* in `Models_comparison`, which takes in input the infection patterns of simple and simplicial contagion generated with *Simulate_simple_contagion_SIR_free_a.ipynb* and *Simulate_simplicial_contagion_SIR_free_a.ipynb* respectively.
 
-- Fig. 6(a): The notebook *Simulate Threshold_stochastic.ipynb* in "Threshold_model/code" simulates the process for the set of values of $\theta$ that appears in the figure, then *plot_similarity_matrixSIR_threshold.ipynb* generates the figure.
+- Fig. 6(a): The notebook *Simulate Threshold_stochastic.ipynb* in `Threshold_model/code` simulates the process for the set of values of $\theta$ that appears in the figure, then *plot_similarity_matrixSIR_threshold.ipynb* generates the figure.
 
-- Fig. 6(b): The figure is generated by *plot_similarity_matrix_threshold_vs_simple.ipynb* in "Models_comparison", which takes in input the infection patterns of simple and threshold contagion generated with *Simulate_simple_contagion_SIR_free_a.ipynb* and *Simulate Threshold_stochastic.ipynb* respectively.
+- Fig. 6(b): The figure is generated by *plot_similarity_matrix_threshold_vs_simple.ipynb* in `Models_comparison`, which takes in input the infection patterns of simple and threshold contagion generated with *Simulate_simple_contagion_SIR_free_a.ipynb* and *Simulate Threshold_stochastic.ipynb* respectively.

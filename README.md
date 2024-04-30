@@ -17,9 +17,9 @@ contains a simplified version of the code used in https://github.com/diegocontr/
 
 To generate simulation data, execute the following scripts:
 
-\```bash
-python 01_sistematic_simulation_altmodel.py --disease {MODEL} --tauE {tauE} --tauI {tauI} --pvar {MARKOVIAN} --Nruns 1000 --R0fit {R0} --data {DATASET} --folder SimResults/{DATASET} --label {NAME}_ --modelname {NAME}
-\```
+
+`python 01_sistematic_simulation_altmodel.py --disease {MODEL} --tauE {tauE} --tauI {tauI} --pvar {MARKOVIAN} --Nruns 1000 --R0fit {R0} --data {DATASET} --folder SimResults/{DATASET} --label {NAME}_ --modelname {NAME}`
+
 
 Here's what each parameter represents:
 
@@ -39,9 +39,7 @@ Here's what each parameter represents:
   - SEIRe4v025: for Non-Markovian SEIR with tauI=1 and tauE=4
   - SEIRi4v025: for Non-Markovian SEIR with tauI=4 and tauE=1
 
-For the school dataset, use the *01_sistematic_simulation_altmodel-school.py* script specifically for the COVID model.
-
-To obtain the files needed to make the figures, use the script *02_extract_matrices.py*
+For the school dataset, use the *01_sistematic_simulation_altmodel-school.py* script specifically for the COVID model. The results will be save in `SimResults/{DATASET}`, and will have custom format that includes several parameters of the model.
 
 
 ## Simple_model:
@@ -101,14 +99,14 @@ Notebooks that analyze and compare infection pattern across simple, simplicial a
 # How to reproduce the figures of the paper:
 For all the figures we have simulated the processes on the primary school dataset of Sociopatterns.
 
-- Fig. 3(a): Diego: explain how to generate the infection pattern matrix Cij.
+- Fig. 3(a): To generate the infection pattern matrices necessary for creating the figures, execute the script *02_extract_matrices.py* for each simulation condition. To run this script on a specific output file, use the command `python 02_extract_matrices.py --Npop {N} --folder ./SimResults/{DATASET}/ --folder_out ./SimResults/{DATASET}/ --file {FILE_TO_ANALYZE} --label {NAME}`, where `N` represents the desired output matrix's size, saved in CSV format, denoting the number of nodes in the dataset.
 Then the notebook *Plot_similarity_fixed_R0.ipynb* in "Simple_contagion/code" compares the generated infection patterns and generates the figure.
 
 - Fig. 3(b): We first need to choose some values of $\beta$ (and hence of $R_0$) to simulate the simple contagion. For the figure in the paper the values of $\beta$ are [0.12,0.15,0.18,0.21,0.24,0.27,0.3,0.33,0.36], corresponding to the values of $R_0$ [1.40,1.65,1.97,2.11,2.31,2.48,2.68,2.84,3.01] (but different values can be found using *Simulate_simple_contagion_SIR_find_R0.ipynb*). These values can be put in *Simulate_simple_contagion_SIR_free_a.ipynb* in folder "Simple_model/code" as "beta_range" to simulate the process. The infection patterns will be stored in a folder "results".  The notebook *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* takes these results and compare them to generate the figure.
 
 - Fig.3(c-e): Similarly to the procedure for fig. 3(b), we need to simulate the process with *Simulate_simple_contagion_SIR_fixed_a_final.ipynb* and to make the plots with *plot_similarity_matrix_SIR_simple_fixed_a_final.ipynb*. In both the notebooks the desired range of attack rate should be indicated setting minimum (a_inf) and maximum (a_sup).
 
-- Fig.4: ..Diego: explain how to generate the results.
+- Fig.4: The simulations for the office dataset have been completed, and infection pattern matrices have been computed using *02_extract_matrices.py* for each model to be compared with the reference model (SIR with R0=4 in this case). Utilize the *script 03_data_figure4.py* to generate a JSON file containing all the information required to create the figure.
 Then the notebook *Fig_similarity_time.ipynb* in "Simple_model/code" will generate the figure.
 
 - Fig.5(a,b): The notebook *Simulate_simplicial_contagion_SIR_free_a.ipynb* in "Simplicial_model/code" simulates the simplicial contagion for the set of values of $\beta$ and $\beta_{\Delta}$ that appears in the figure (but can be changed setting beta_betaT_range). The infection pattern are stored in the folder "results" and then used by the notebook *plot_similarity_matrix_SIR_simplicial_free_a.ipynb* to generate the figures.
